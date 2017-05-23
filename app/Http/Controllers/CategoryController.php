@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\CreateCategoryRequest;
 use App\Services\CategoryService;
 
 class CategoryController
@@ -22,5 +22,12 @@ class CategoryController
         $categories = $this->categoryService->fetchCategories();
 
         return view('categories.index', ['categories' => $categories]);
+    }
+
+    public function store(CreateCategoryRequest $request)
+    {
+        $this->categoryService->createNewCategory($request->all());
+
+        return view();
     }
 }

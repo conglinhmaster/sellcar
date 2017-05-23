@@ -10,4 +10,9 @@ class CategoryRepo extends BaseRepository
     {
         return Category::all();
     }
+
+    public function createNewCategory($categoryName)
+    {
+        Category::create(['name' => $categoryName]);
+    }
 }

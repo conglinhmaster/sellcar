@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('categories', 'CategoryController@index');
+Route::post('/categories', 'CategoryController@store');

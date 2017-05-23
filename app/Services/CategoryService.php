@@ -1,17 +1,17 @@
 <?php
-namespace App\Services;
 
+namespace App\Services;
 
 use App\Repositories\CategoryRepo;
 
-class CategoryService
+class CategoryService extends BaseService
 {
     /**
      * @var CategoryRepo
      */
     private $categoryRepo;
 
-    public function __construct (CategoryRepo $categoryRepo)
+    public function __construct(CategoryRepo $categoryRepo)
     {
         $this->categoryRepo = $categoryRepo;
     }
@@ -19,5 +19,11 @@ class CategoryService
     public function fetchCategories()
     {
         return $this->categoryRepo->fetchCategories();
+    }
+
+    public function createNewCategory($request)
+    {
+        $categoryName = $request->name;
+        $this->categoryRepo->createNewCategory($categoryName);
     }
 }
