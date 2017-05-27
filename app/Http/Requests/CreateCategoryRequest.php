@@ -30,6 +30,9 @@ class CreateCategoryRequest extends FormRequest
 
     public function messages()
     {
-
+        return [
+            'name.required' => 'A name is required',
+            'name.min' => 'A name is at least 6 character',
+        ];
     }
 }
