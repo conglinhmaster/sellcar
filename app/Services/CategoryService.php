@@ -23,7 +23,21 @@ class CategoryService extends BaseService
 
     public function createNewCategory($request)
     {
-        $categoryName = $request->name;
-        $this->categoryRepo->createNewCategory($categoryName);
+        $categoryName = $request['name'];
+        $isCategoryExist = $this->categoryRepo->findByName($categoryName);
+        if ($isCategoryExist) {
+            return false;
+        }
+        return $this->categoryRepo->createNewCategory($categoryName);
+    }
+
+    public function delete($id)
+    {
+        $this->categoryRepo->deleteCategory($id);
+    }
+
+    public function update($request)
+    {
+        $this->categoryRepo->update($request);
     }
 }

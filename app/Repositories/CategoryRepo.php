@@ -13,6 +13,24 @@ class CategoryRepo extends BaseRepository
 
     public function createNewCategory($categoryName)
     {
-        Category::create(['name' => $categoryName]);
+        return Category::create(['name' => $categoryName]);
+    }
+
+    public function findByName($categoryName)
+    {
+        return Category::where('name', '=', $categoryName)->first();
+    }
+
+
+    public function deleteCategory($id)
+    {
+        Category::destroy($id);
+    }
+
+    public function update($request)
+    {
+        $update = Category::find($request['id']);
+        $update->name = $request['name'];
+        $update->save();
     }
 }
